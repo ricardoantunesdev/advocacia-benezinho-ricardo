@@ -1,13 +1,29 @@
 package br.com.fiap.domain.entity;
 
+import jakarta.persistence.*;
+import org.checkerframework.checker.units.qual.C;
+
+@Entity
+@Table(name = "TB_ADVOGADO", uniqueConstraints = {
+        @UniqueConstraint(name="UK_NMR_OAB", columnNames = {
+                "NMR_OAB"
+        })
+})
 public class Advogado {
 
+    @Id
+    @GeneratedValue(strategy =  GenerationType.SEQUENCE, generator = "SQ_ADOVAGDO")
+    @SequenceGenerator(name="SQ_ADVOGADO", sequenceName = "SQ_ADVOGADO")
+    @Column(name = "ID_ADVOGADO")
     private Long id;
 
+    @Column(name = "NM_ADVOGADO")
     private String nome;
 
+    @Column(name = "NMR_OAB")
     private String numeroOAB;
 
+    @Column(name = "NM_ESTADO")
     private Estado estado;
 
     public Advogado() {
